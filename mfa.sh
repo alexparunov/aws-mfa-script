@@ -31,8 +31,8 @@ if [[ $# -ne 1 && $# -ne 2 ]]; then
 fi
 
 echo "Reading config..."
-if [ -r ~/mfa.cfg ]; then
-  . ~/mfa.cfg
+if [ -r $HOME/.aws/aws-mfa-script/mfa.cfg ]; then
+  . $HOME/.aws/aws-mfa-script/mfa.cfg
 else
   echo "No config found.  Please create your mfa.cfg.  See README.txt for more info."
   exit 2
@@ -49,4 +49,4 @@ echo "MFA Token Code: $MFA_TOKEN_CODE"
 echo "Your Temporary Creds:"
 aws --profile $AWS_CLI_PROFILE sts get-session-token --duration 129600 \
   --serial-number $ARN_OF_MFA --token-code $MFA_TOKEN_CODE --output text \
-  | awk '{printf("export AWS_ACCESS_KEY_ID=\"%s\"\nexport AWS_SECRET_ACCESS_KEY=\"%s\"\nexport AWS_SESSION_TOKEN=\"%s\"\nexport AWS_SECURITY_TOKEN=\"%s\"\n",$2,$4,$5,$5)}' | tee ~/.token_file
+  | awk '{printf("export AWS_ACCESS_KEY_ID=\"%s\"\nexport AWS_SECRET_ACCESS_KEY=\"%s\"\nexport AWS_SESSION_TOKEN=\"%s\"\nexport AWS_SECURITY_TOKEN=\"%s\"\n",$2,$4,$5,$5)}' | tee $HOME/.aws/.token_file
