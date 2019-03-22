@@ -12,16 +12,22 @@ The ARN should be the ARN of your MFA device as specified in the AWS console.
 The MFA code is the code your MFA device gives you.
 
 # Installation
- 1. Extract the files to your home directory `~/`
- 2. Add `source ./alias.sh` to your `~/.bashrc`
- 3. Copy `SAMPLE-mfa.cfg` to `~/mfa.cfg` 
- 4. Add a profile name and MFA ARN for each aws cli profile you wish to use. The key should be the profile name and the value should be the ARN of the MFA to use for that profile. 
+ 1. Extract the files to your `~/.aws` directory into folder `aws-mfa-script`
+ 2. Add `source ~/.aws/aws-mfa-script/alias.sh` to your `~/.bashrc`
+ 3. Copy `SAMPLE-mfa.cfg` to `~/.aws/aws-mfa-script/mfa.cfg` 
+ 4. Add a profile name and MFA ARN for each aws cli profile you wish to use. The key should be the profile name and the value should be the ARN of the MFA to use for that profile.
  
 # Running the script
 At a command prompt run the following command.
 
 ```
 mfa <mfacode> <optional-aws-profile>
+```
+
+MFA session is valid for 36 hours. In case you with to reuse it in another subprocess just run the following command.
+
+```
+reuse_mfa_session
 ```
  
 ## Alias Note:
