@@ -24,7 +24,7 @@ At a command prompt run the following command.
 mfa <mfacode> <optional-aws-profile>
 ```
 
-MFA session is valid for 36 hours. In case you with to reuse it in another subprocess just run the following command.
+MFA session is valid for 36 hours. In case you want to reuse it in another subprocess just run the following command.
 
 ```
 reuse_mfa_session
